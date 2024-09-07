@@ -1,7 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import Detail from './routes/Detail';
+import Home from './routes/Home';
+import ErrorPage from './error-page';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/movie/:id",
+    element: <Detail />,
+    
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,6 +28,7 @@ root.render(
   //   <App />
   // </React.StrictMode>
   // not use StrictMode
-  <App />
+  // <App />
+  <RouterProvider router={router} />
 );
 
