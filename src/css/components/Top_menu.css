@@ -1,0 +1,84 @@
+#webcrumbs {
+    /* font-family: Open Sans !important; */
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+#webcrumbs :is(.font-title) {
+    font-family:
+      Lato,
+      ui-sans-serif,
+      system-ui,
+      sans-serif,
+      Apple Color Emoji,
+      Segoe UI Emoji,
+      Segoe UI Symbol,
+      Noto Color Emoji;
+  }
+  #webcrumbs :is(.Menu-bar) {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 17px 48px 17px 40px;
+    background-color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 72px;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+  }
+  #webcrumbs :is(.Menu-logo) {
+    display: inline-block;
+    margin-right: 40px;
+  }
+  #webcrumbs :is(.Menu-list) {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    color: rgb(255 255 255 / 1);
+  }
+  #webcrumbs :is(.Menu-list-item) {
+    display: flex;
+    margin-right: 5px;
+    color: rgb(156 163 175 / 1);
+  }
+  #webcrumbs :is(.Menu-list-item:hover) {
+    border-radius: 10px;
+    background-color: rgb(156 163 175 / 0.5);
+  }
+  #webcrumbs :is(.Menu-list-link) {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 115%;
+    color: rgb(156 163 175 / 1);
+  }
+  #webcrumbs :is(.Menu-list-link, .Menu-user) {
+    padding: 9px;
+  }
+  #webcrumbs :is(.Menu-right_side) {
+    margin-left: auto;
+  }
+  #webcrumbs :is(.Menu-explore_link){
+    background-color: rgb(156 163 175 / 0.3);
+    color: rgb(255 255 255 / 1);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+  }
+  #webcrumbs :is(.Menu-user){
+    position: relative;
+  }
+  #webcrumbs :is(.Menu-user-img){
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 9999px;
+  }
+  #webcrumbs :is(.margin-left-8px){
+    margin-left: 8px;
+  }
+  #webcrumbs :is(.margin-right-24px){
+    margin-right: 24px;
+  }
+  

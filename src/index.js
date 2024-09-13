@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { Top_Menu } from './components/Top_Menu';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
   {
     path: "/movie/:id",
     element: <Detail />,
+    
+  },
+  {
+    path: "/test",
+    element: <Top_Menu />,
     
   },
 ]);
