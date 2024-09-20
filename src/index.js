@@ -7,7 +7,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { Top_Menu } from './components/Top_Menu';
+
+import CloneCoupangplay from './clone_coupangplay'
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,8 @@ const router = createBrowserRouter([
     
   },
   {
-    path: "/test",
-    element: <Top_Menu />,
+    path: "/coupangplay",
+    element: <CloneCoupangplay />,
     
   },
 ]);

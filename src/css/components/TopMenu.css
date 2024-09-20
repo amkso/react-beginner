@@ -16,8 +16,8 @@
       Noto Color Emoji;
   }
   #webcrumbs :is(.Menu-bar) {
-    box-sizing: border-box;
     width: 100%;
+    min-width: 1200px;
     padding: 17px 48px 17px 40px;
     background-color: black;
     display: flex;
@@ -102,7 +102,6 @@
     padding: 10px 0;
     z-index: 1;
     right: 32px;
-    box-sizing: border-box;
   }
 
   #webcrumbs :is(.Menu-explore_subContainer){
@@ -111,7 +110,6 @@
     border: .5px solid hsla(0, 0%, 100%, .1);
     background: #272a30;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .15), 0 1px 2px 0 rgba(0, 0, 0, .3);
-    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
   }
@@ -126,9 +124,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    box-sizing: border-box;
   }
-  /*  */
+
   #webcrumbs :is(.Menu-user_container) {
     display: flex;
     width: 120px;
@@ -136,7 +133,6 @@
     padding: 10px 0;
     z-index: 1;
     right: 16px;
-    box-sizing: border-box;
   }
 
   #webcrumbs :is(.Menu-user_subContainer){
@@ -145,7 +141,6 @@
     border: .5px solid hsla(0, 0%, 100%, .1);
     background: #272a30;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .15), 0 1px 2px 0 rgba(0, 0, 0, .3);
-    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
   }
@@ -159,5 +154,4 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    box-sizing: border-box;
   }
