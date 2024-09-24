@@ -19,14 +19,12 @@ const router = createBrowserRouter([
   {
     path: "/movie/:id",
     element: <Detail />,
-    
   },
   {
     path: "/coupangplay",
     element: <CloneCoupangplay />,
-    
   },
-]);
+], {basename: `${process.env.PUBLIC_URL}`,});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

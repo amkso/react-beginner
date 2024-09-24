@@ -22,14 +22,17 @@ html, body{
 }
 
 #error-page {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 #coupangplay {
   display: flex;
   min-width: 1200px;
+  overflow-x: hidden;
 }
 #coupangplay :is(.contentPadding){
   position: relative;

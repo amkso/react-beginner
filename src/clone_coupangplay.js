@@ -22,35 +22,16 @@ function CloneCoupangplay(){
     "https://img.coupangstreaming.com/titles/4b1cc10f-365d-4497-8338-58bc75ae5851/background/bda0aae0-74e5-435a-b756-fe379b685a5f.jpg?imwidth=350&imscalingMode=aspectFit"
   ]
   
-  const catScrollRight = () => {
-    document.querySelector(".categoryContainer-list").scrollBy({left: 300, behavior: "smooth",});
+  const setScrollLeft = (params) => {
+    document.querySelector(params.name).scrollBy({left: params.value, behavior: "smooth",});
   }
-  const catScrollLeft = () => {
-    document.querySelector(".categoryContainer-list").scrollBy({left: -300, behavior: "smooth",});
-  }
-  const top20ScrollRight = () => {
-    document.querySelector(".weekTop20-list").scrollBy({left: 600, behavior: "smooth",});
-  }
-  const top20ScrollLeft = () => {
-    document.querySelector(".weekTop20-list").scrollBy({left: -600, behavior: "smooth",});
-  }
-  const lastScrollRight = () => {
-    document.querySelector(".lastContent-list").scrollBy({left: 600, behavior: "smooth",});
-  }
-  const lastScrollLeft = () => {
-    document.querySelector(".lastContent-list").scrollBy({left: -600, behavior: "smooth",});
-  }
-
 
   const categoryList = document.querySelector(".categoryContainer-list");
   const top20List = document.querySelector(".weekTop20-list");
   const lastContentList = document.querySelector(".lastContent-list");
 
-  const [isHoverCatList, setIsHoverCatList] = useState(false);
-  const [isHoverTop20List, setIsHoverTop20List] = useState(false);
-  const [isHoverLastContentList, setIsHoverLastContentList] = useState(false);
-  const [isHoverBtn, setIsHoverBtn] = useState(false);
-
+  const [isHoverNum, setIsHoverNum] = useState(0);
+  const [isHoverBtn, setIsHoverBtn] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [moviesLikes, setMoviesLikes] = useState([]);
@@ -75,27 +56,33 @@ function CloneCoupangplay(){
       <div className="bodyContentsContainer">
         <div className="categoryContainer contentPadding">
           <div><h1>카테고리</h1></div>
-          <div onMouseEnter={() => setIsHoverCatList(true)} 
-              onMouseLeave={() => setIsHoverCatList(false)} 
+          <div onMouseOver={() => setIsHoverNum(1)}
+              onMouseOut={() => setIsHoverNum(0)} 
             className="categoryContainer-list"
           >
             {categories.map((category)=>(<div className="contentCategory-item" key={category}>{category}</div>))}
           </div>
-          { (isHoverCatList || isHoverBtn) && (0 < categoryList.scrollLeft) ? (
-            <div 
-              className="arrowButton-left" 
-              onMouseEnter={() => setIsHoverBtn(true)} 
-              onMouseLeave={() => setIsHoverBtn(false)} >
-                <button onClick={catScrollLeft}>{'<-'}</button>
-            </div>
-          ):null}
-          { (isHoverCatList || isHoverBtn) && (categoryList.scrollLeft < categoryList.scrollWidth - categoryList.offsetWidth) ? (
-            <div 
-              className="arrowButton-right" 
-              onMouseEnter={() => setIsHoverBtn(true)} 
-              onMouseLeave={() => setIsHoverBtn(false)} >
-              <button onClick={catScrollRight}>{'->'}</button>
-          </div>
+          {(isHoverNum === 1 || isHoverBtn === 1)? (
+            <>
+              {(0 < categoryList.scrollLeft) ?
+                <div 
+                  onMouseOver={() => setIsHoverBtn(1)} 
+                  onMouseOut={() => setIsHoverBtn(0)} 
+                  className="arrowButton-left" 
+                >
+                  <button onClick={() => setScrollLeft({name:".categoryContainer-list", value:-300})}>{'<-'}</button>
+                </div>
+              :null}
+              {(categoryList.scrollLeft < categoryList.scrollWidth - categoryList.offsetWidth) ?
+                <div 
+                  onMouseOver={() => setIsHoverBtn(1)} 
+                  onMouseOut={() => setIsHoverBtn(0)} 
+                  className="arrowButton-right" 
+                >
+                  <button onClick={() => setScrollLeft({name:".categoryContainer-list", value:300})}>{'->'}</button>
+              </div>
+              :null}
+            </>
           ):null}
         </div>
 
@@ -124,8 +111,8 @@ function CloneCoupangplay(){
         <div className="weekTop20Container contentPadding">
           <div><h1>해외 인기작 TOP 20</h1></div>
           <div 
-            onMouseEnter={() => setIsHoverTop20List(true)} 
-            onMouseLeave={() => setIsHoverTop20List(false)}
+            onMouseEnter={() => setIsHoverNum(2)} 
+            onMouseLeave={() => setIsHoverNum(0)}
             className="weekTop20-list">
             { loading ? (
               moviesLikes.map((movie, index) => (
@@ -140,31 +127,36 @@ function CloneCoupangplay(){
               ))
               ) : null}
           </div>
-          
-          { (isHoverTop20List || isHoverBtn) && (0 < top20List.scrollLeft) ? (
-            <div 
-              className="arrowButton-left" 
-              onMouseEnter={() => setIsHoverBtn(true)} 
-              onMouseLeave={() => setIsHoverBtn(false)} >
-                <button onClick={top20ScrollLeft}>{'<-'}</button>
-            </div>
-          ):null}
-          { (isHoverTop20List || isHoverBtn) && (top20List.scrollLeft < top20List.scrollWidth - top20List.offsetWidth) ? (
-            <div 
-              className="arrowButton-right" 
-              onMouseEnter={() => setIsHoverBtn(true)} 
-              onMouseLeave={() => setIsHoverBtn(false)} >
-              <button onClick={top20ScrollRight}>{'->'}</button>
-          </div>
-          ):null}
+          {(isHoverNum === 2 || isHoverBtn === 2)? (
+            <>
+              { (0 < top20List.scrollLeft) ? (
+                <div 
+                  className="arrowButton-left" 
+                  onMouseEnter={() => setIsHoverBtn(2)} 
+                  onMouseLeave={() => setIsHoverBtn(0)} 
+                >
+                  <button onClick={() => setScrollLeft({name:".weekTop20-list", value:-600})}>{'<-'}</button>
+                </div>
+              ):null}
+              { (top20List.scrollLeft < top20List.scrollWidth - top20List.offsetWidth) ? (
+                <div 
+                  className="arrowButton-right" 
+                  onMouseEnter={() => setIsHoverBtn(2)} 
+                  onMouseLeave={() => setIsHoverBtn(0)} 
+                >
+                  <button onClick={() => setScrollLeft({name:".weekTop20-list", value:600})}>{'->'}</button>
+                </div>
+              ):null}
+            </>
+            ):null}
         </div>
 
         <div className="lastContainer contentPadding">
           <div><h1>범인을 찾아서 {">"}</h1></div>
-          {  (
+          {(
             <div 
-              onMouseEnter={() => setIsHoverLastContentList(true)} 
-              onMouseLeave={() => setIsHoverLastContentList(false)}
+              onMouseEnter={() => setIsHoverNum(3)} 
+              onMouseLeave={() => setIsHoverNum(0)}
               className="lastContent-list">
               {lastList.map((item, index) =>(
                 <div className="lastContent-item" key={index}>
@@ -176,21 +168,27 @@ function CloneCoupangplay(){
             </div>
           )
           }
-          { (isHoverLastContentList || isHoverBtn) && (0 < lastContentList.scrollLeft) ? (
-            <div 
-              className="arrowButton-left" 
-              onMouseEnter={() => setIsHoverBtn(true)} 
-              onMouseLeave={() => setIsHoverBtn(false)} >
-                <button onClick={lastScrollLeft}>{'<-'}</button>
-            </div>
-          ):null}
-          { (isHoverLastContentList || isHoverBtn) && (lastContentList.scrollLeft < lastContentList.scrollWidth - lastContentList.offsetWidth) ? (
-            <div 
-              className="arrowButton-right" 
-              onMouseEnter={() => setIsHoverBtn(true)} 
-              onMouseLeave={() => setIsHoverBtn(false)} >
-              <button onClick={lastScrollRight}>{'->'}</button>
-          </div>
+          {(isHoverNum === 3 || isHoverBtn === 3)? (
+            <>
+              { (0 < lastContentList.scrollLeft) ? (
+                <div 
+                  className="arrowButton-left" 
+                  onMouseEnter={() => setIsHoverBtn(3)} 
+                  onMouseLeave={() => setIsHoverBtn(0)} 
+                >
+                  <button onClick={() => setScrollLeft({name:".lastContent-list", value:-600})}>{'<-'}</button>
+                </div>
+              ):null}
+              { (lastContentList.scrollLeft < lastContentList.scrollWidth - lastContentList.offsetWidth) ? (
+                <div 
+                  className="arrowButton-right" 
+                  onMouseEnter={() => setIsHoverBtn(3)} 
+                  onMouseLeave={() => setIsHoverBtn(0)} 
+                >
+                  <button onClick={() => setScrollLeft({name:".lastContent-list", value:600})}>{'->'}</button>
+                </div>
+              ):null}
+            </>
           ):null}
         </div>
       </div>

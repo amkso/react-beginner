@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MovieShort from "../components/MovieShort";
+import { TopMenu } from "../components/TopMenu";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -25,14 +26,17 @@ function Home() {
         <h1>Loading...</h1>
           : 
         <div>
-          {movies.map((movie) => (
-            <MovieShort 
-              key={movie.id}
-              id={movie.id}
-              coverImg={movie.medium_cover_image} 
-              title={movie.title} 
-            />
-          ))}
+          <TopMenu />
+          <div style={{marginTop: 70 + 'px'}}>
+            {movies.map((movie) => (
+              <MovieShort 
+                key={movie.id}
+                id={movie.id}
+                coverImg={movie.medium_cover_image} 
+                title={movie.title} 
+              />
+            ))}
+          </div>
         </div>
       }
     </div>
