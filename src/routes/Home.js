@@ -1,14 +1,20 @@
 import { useState, useEffect } from "react";
 import MovieShort from "../components/MovieShort";
 import { TopMenu } from "../components/TopMenu";
-
+import { useNavigate } from "react-router-dom";
 function Home() {
+  let navigate = useNavigate();
+
+  // redirect to coupangplay
+  navigate("/coupangplay");
+
+  // no use
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  
+
   useEffect(() => {
     async function fetchData() {
-      const json = await(
+      const json = await (
         await fetch(
           `https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year`
         )
@@ -22,23 +28,23 @@ function Home() {
 
   return (
     <div>
-      {loading ? 
+      {loading ? (
         <h1>Loading...</h1>
-          : 
+      ) : (
         <div>
           <TopMenu />
-          <div style={{marginTop: 70 + 'px'}}>
+          <div style={{ marginTop: 70 + "px" }}>
             {movies.map((movie) => (
-              <MovieShort 
+              <MovieShort
                 key={movie.id}
                 id={movie.id}
-                coverImg={movie.medium_cover_image} 
-                title={movie.title} 
+                coverImg={movie.medium_cover_image}
+                title={movie.title}
               />
             ))}
           </div>
         </div>
-      }
+      )}
     </div>
   );
 }
